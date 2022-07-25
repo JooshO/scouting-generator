@@ -14,5 +14,6 @@ TODO:
 - Pit scouting support (also needed on the app)
 - Ability to load json files for modification so you can work with what you alread created
 - In-code documentation
+- Add a logo!
 
 Note: Match Number and Team Number do not need to be added to other areas, and should not be moved from their starting location
