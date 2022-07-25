@@ -22,7 +22,7 @@
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
+      "category": "Utility",
       "copyright": "",
       "deb": {
         "depends": []
@@ -35,8 +35,8 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
-      "longDescription": "",
+      "identifier": "com.frc5567.scouting-generator",
+      "longDescription": "A tool made to generate the JSON file that the FRC 5567 scouting app uses to generate its database schema.",
       "macOS": {
         "entitlements": null,
         "exceptionDomain": "",
@@ -45,7 +45,7 @@
         "signingIdentity": null
       },
       "resources": [],
-      "shortDescription": "",
+      "shortDescription": "Scouting Question JSON File Generator",
       "targets": "all",
       "windows": {
         "certificateThumbprint": null,
