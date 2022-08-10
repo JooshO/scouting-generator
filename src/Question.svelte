@@ -3,14 +3,17 @@
   export let options: string[];
   export let type: number;
   export let section: string;
-  export let onDelete: (label: string, section: string) => void;
+  export let onDelete: (id: number, section: string) => void;
   export let deletable: boolean;
+  export let id: number;
 
+  // map integers to their question type's name
   const typeMap = ["Number", "Number Inc", "Text", "Select", "Checkbox"];
 
+  // call our onDelete function
   function onDeleteHelper() {
     if (onDelete != null) {
-      onDelete(label, section);
+      onDelete(id, section);
     }
   }
 </script>
