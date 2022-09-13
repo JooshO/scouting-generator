@@ -1,18 +1,22 @@
 <script lang="ts">
+  // adder callback function to feed the main app a label, type, section, and options to add a question
   export let add: (
     label: string,
     type: number,
     section: string,
     options: string[]
   ) => void;
+
+  // save callback to let the main app control data writing
   export let save: () => void;
 
+  // values we will use to callback and bind to our form
   let label: string;
   let type: number;
   let section: string;
   let optionsStr: string = "";
 
-  // helper to feed our add callback the proper data
+  /** helper to feed our add callback the proper data */
   function addHelper() {
     if (optionsStr != "") {
       add(label, type, section, optionsStr.split(","));

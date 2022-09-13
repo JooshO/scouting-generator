@@ -1,10 +1,17 @@
 <script lang="ts">
+  // values that we will actually store and write with that define the question
   export let label: string;
   export let options: string[];
   export let type: number;
   export let section: string;
+
+  // delete helper to let main app handle deleting
   export let onDelete: (id: number, section: string) => void;
+
+  // whether this question can be deleted
   export let deletable: boolean;
+
+  // number ID of the question, for drag and drop functionality
   export let id: number;
 
   // map integers to their question type's name
