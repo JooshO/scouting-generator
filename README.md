@@ -17,3 +17,5 @@ TODO:
 - Add a logo!
 
 Note: Match Number and Team Number do not need to be added to other areas, and should not be moved from their starting location
+
+To build this code from source you will need to set up Node.js ([https://nodejs.org/en/](https://nodejs.org/en/)), Yarn ([https://yarnpkg.com/getting-started/install](https://yarnpkg.com/getting-started/install)), and Tauri ([https://tauri.app/v1/guides/getting-started/prerequisites](https://tauri.app/v1/guides/getting-started/prerequisites).
