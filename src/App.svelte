@@ -88,7 +88,7 @@
    * Helper that we call whenever we drag and drop
    * @param target The area that we are dragging and dropping in
    */
-  function questionMoveHelper(target: string) {
+  function questionMoveHelper(target: string, items: any) {
     // for each element within our target list, set its current section to be this list
     for (let index = 0; index < allQuestions.get(target).length; index++) {
       var old: string = allQuestions.get(target)[index].section;
@@ -96,61 +96,37 @@
         allQuestions.get(target)[index].section = target;
       }
     }
+
+    // update the list and force svelte to recognize it
+    allQuestions.set(target, items);
+    allQuestions[target] = allQuestions.get(target);
   }
 
   // These functions are called when their specific region has a drag and drop event
-  // We update the list that we are modifying with set and =, and also call our helper
   //#region helper functions for drag and drop
-  function finalizePrematch(e) {
+  function dndPrematch(e: { detail: { items: any } }) {
     let target = "prematch";
-    questionMoveHelper(target);
-    allQuestions.set(target, e.detail.items);
-    allQuestions[target] = allQuestions.get(target);
-  }
-  function considerPrematch(e: { detail: { items: any } }) {
-    let target = "prematch";
-    questionMoveHelper(target);
-    allQuestions.set(target, e.detail.items);
-    allQuestions[target] = allQuestions.get(target);
+    questionMoveHelper(target, e.detail.items);
   }
 
-  function finalizeAuton(e) {
+  function dndAuton(e: { detail: { items: any } }) {
     let target = "auton";
-    questionMoveHelper(target);
-    allQuestions.set(target, e.detail.items);
-    allQuestions[target] = allQuestions.get(target);
-  }
-  function considerAuton(e) {
-    let target = "auton";
-    questionMoveHelper(target);
-    allQuestions.set(target, e.detail.items);
-    allQuestions[target] = allQuestions.get(target);
+    questionMoveHelper(target, e.detail.items);
   }
 
-  function finalizeTeleop(e) {
+  function dndTeleop(e: { detail: { items: any } }) {
     let target = "teleop";
-    questionMoveHelper(target);
-    allQuestions.set(target, e.detail.items);
-    allQuestions[target] = allQuestions.get(target);
-  }
-  function considerTeleop(e) {
-    let target = "teleop";
-    questionMoveHelper(target);
-    allQuestions.set(target, e.detail.items);
-    allQuestions[target] = allQuestions.get(target);
+    questionMoveHelper(target, e.detail.items);
   }
 
-  function finalizeEndgame(e) {
+  function dndEndgame(e: { detail: { items: any } }) {
     let target = "endgame";
-    questionMoveHelper(target);
-    allQuestions.set(target, e.detail.items);
-    allQuestions[target] = allQuestions.get(target);
+    questionMoveHelper(target, e.detail.items);
   }
-  function considerEndgame(e) {
-    let target = "endgame";
-    questionMoveHelper(target);
-    allQuestions.set(target, e.detail.items);
-    allQuestions[target] = allQuestions.get(target);
+
+  function dndPit(e: { detail: { items: any } }) {
+    let target = "pit";
+    questionMoveHelper(target, e.detail.items);
   }
   //#endregion
 
@@ -213,8 +189,8 @@
     <div
       class="slot"
       use:dndzone={{ items: allQuestions.get("prematch") }}
-      on:consider={considerPrematch}
-      on:finalize={finalizePrematch}
+      on:consider={dndPrematch}
+      on:finalize={dndPrematch}
     >
       {#each allQuestions.get("prematch") as question (question.id)}
         <Question
@@ -232,8 +208,8 @@
     <div
       class="slot"
       use:dndzone={{ items: allQuestions.get("auton") }}
-      on:consider={considerAuton}
-      on:finalize={finalizeAuton}
+      on:consider={dndAuton}
+      on:finalize={dndAuton}
     >
       {#each allQuestions.get("auton") as question (question.id)}
         <Question
@@ -251,8 +227,8 @@
     <div
       class="slot"
       use:dndzone={{ items: allQuestions.get("teleop") }}
-      on:consider={considerTeleop}
-      on:finalize={finalizeTeleop}
+      on:consider={dndTeleop}
+      on:finalize={dndTeleop}
     >
       {#each allQuestions.get("teleop") as question (question.id)}
         <Question
@@ -270,8 +246,8 @@
     <div
       class="slot"
       use:dndzone={{ items: allQuestions.get("endgame") }}
-      on:consider={considerEndgame}
-      on:finalize={finalizeEndgame}
+      on:consider={dndEndgame}
+      on:finalize={dndEndgame}
     >
       {#each allQuestions.get("endgame") as question (question.id)}
         <Question
@@ -289,8 +265,8 @@
     <div
       class="slot"
       use:dndzone={{ items: allQuestions.get("pit") }}
-      on:consider={considerPrematch}
-      on:finalize={finalizePrematch}
+      on:consider={dndPit}
+      on:finalize={dndPit}
     >
       {#each allQuestions.get("pit") as question (question.id)}
         <Question

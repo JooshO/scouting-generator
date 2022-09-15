@@ -48,6 +48,7 @@
 
 <div class="box">
   <input bind:value={label} placeholder="label" />
+  <!-- This creates a dropdown to select our question type -->
   <select bind:value={type}>
     {#each types as type}
       <option value={type.value}>
@@ -55,6 +56,8 @@
       </option>
     {/each}
   </select>
+  
+  <!-- This creates a dropdown to select our question section -->
   <select bind:value={section}>
     {#each sections as section}
       <option value={section.value}>
@@ -62,6 +65,8 @@
       </option>
     {/each}
   </select>
+
+  <!--  -->
   {#if type == 3}
     <input bind:value={optionsStr} placeholder="Options (comma seperated)" />
   {/if}
